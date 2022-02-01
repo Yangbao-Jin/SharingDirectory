@@ -1,0 +1,97 @@
+import random
+
+class PokerCards:
+    def __init__(self):
+        self.scards=range(1,14)*4
+        random.shuffle(self.scards)
+
+class Stack:
+    def __init__(self):
+        self.data = []
+
+    def is_empty(self) :
+        if len(self.data) == 0:
+            return True
+        return False
+
+    def push(self, value):
+        self.data.append(value)
+
+    def pop(self) :
+        if not self.is_empty():
+            return self.data.pop()
+        return
+
+    def peek(self):
+        if not self.is_empty():
+            return self.data[-1]
+        return
+
+
+class Queue:
+    def __init__(self):
+        self.data = []
+
+
+    def is_empty(self):
+        if len(self.data) == 0:
+            return True
+        return False
+
+    def enqueue(self, value):
+        self.data.insert(0, value)
+
+    def dequeue(self) :
+        return self.data.pop()
+
+    def peek(self):
+        if not self.is_empty():
+            return self.data[-1]
+        return
+
+if __name__ == '__main__':
+    P1Queue=Queue()
+    P2Queue=Queue()
+    TableStack=Stack()
+
+    card=PokerCards()
+
+    for i in range(1,6):
+        P1Queue.enqueue(random.choice(card.scards))
+        P2Queue.enqueue(random.choice(card.scards))
+
+    #card.scards.remove(P1Queue.data)
+    hand1=P1Queue.data
+    hand2=P2Queue.data
+    table=card.scards
+    for item1 in hand1:
+        table.remove(item1)
+    for item2 in hand2:
+        table.remove(item2)
+
+    for item3 in table:
+        TableStack.push(item3)
+
+    print P1Queue.data;
+    print P2Queue.data;
+    print TableStack.data;
+
+    while True:
+
+        while P1Queue.peek()==TableStack.peek():
+            P1Queue.enqueue(TableStack.pop())
+
+        TableStack.push(P1Queue.dequeue())
+
+        if P1Queue.is_empty()==True:
+            print("Play1 win!")
+            break
+
+        while P2Queue.peek() == TableStack.peek():
+            P2Queue.enqueue(TableStack.pop())
+
+        TableStack.push(P2Queue.dequeue())
+
+        if P2Queue.is_empty() == True:
+            print("Play2 win!")
+            break
