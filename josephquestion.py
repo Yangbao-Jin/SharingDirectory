@@ -29,6 +29,7 @@ if __name__=='__main__':
    m=9
    n=30
    p=[]
+   deadlist=[]
    circle=RLinkedList()
    p.append(Node(1))
 
@@ -47,7 +48,7 @@ if __name__=='__main__':
    i=1
    person = circle.head
 
-   while premovedNo<n/2+1:
+   while premovedNo<n/2:
 
       while i!=m:
 
@@ -55,12 +56,12 @@ if __name__=='__main__':
          i = i + 1
       i=1
       circle.removednode(person.data)
-      print (person.data)
+      deadlist.append(person.data)
       person=person.next
       premovedNo += 1
 
-
-
+   deadlist.sort()
+   print deadlist
 
 
 
