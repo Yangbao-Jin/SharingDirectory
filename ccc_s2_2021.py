@@ -1,37 +1,47 @@
-x = input()
+m = input('')
+n = input('')
+k = input('')
 
-must_be_in_same_group = []
+brush_instructions = []
+for i in range(0, int(k)):
+    the_input = input('')
+    brush_instructions.append(the_input.split())
 
-for i in range(0, int(x)):
-    x_input = input()
-    must_be_in_same_group.append(x_input.split())
+art_array = []
+for i in range(0, int(m)):
+    art_array.append([])
 
-y = input()
+for i in art_array:
+    for s in range(0, int(n)):
+        i.append("B")
 
-must_not_be_in_same_group = []
+for i in brush_instructions:
+    if i[0] == "R":
+        art_array_row = art_array[int(i[1]) - 1]
+        for index, value in enumerate(art_array_row):
+            if value == "B":
+                art_array_row.pop(index)
+                art_array_row.insert(index, "G")
+            elif value == "G":
+                art_array_row.pop(index)
+                art_array_row.insert(index, "B")
 
-for i in range(0, int(y)):
-    y_input = input()
-    must_not_be_in_same_group.append(y_input.split())
 
-g = input()
+    elif i[0] == "C":
+        for s in art_array:
+            for index, value in enumerate(s):
+                if index == int(i[1]) - 1:
+                    if value == "B":
+                        s.pop(index)
+                        s.insert(index, "G")
+                    elif value == "G":
+                        s.pop(index)
+                        s.insert(index, "B")
 
-groups = []
+gold_count = 0
+for i in art_array:
+    for k in i:
+        if k == "G":
+            gold_count += 1
 
-for i in range(0, int(g)):
-    g_input = input()
-    groups.append(g_input.split())
-
-violation_count = 0
-
-for i in groups:
-    for k1 in must_be_in_same_group:
-        print(violation_count)
-        if (k1[0] not in i == False and k1[1] in i) or (k1[1] not in i and k1[0] in i):
-            violation_count += 1
-
-    for k2 in must_not_be_in_same_group:
-        if k2[0] in i and k2[1] not in i:
-            violation_count += 1
-
-print(violation_count)
+print(gold_count)
