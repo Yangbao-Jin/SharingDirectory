@@ -33,3 +33,4 @@ while c < N:
     c += 1
     sumtime = 0
 print(TimeList)
+print(min(TimeList))
