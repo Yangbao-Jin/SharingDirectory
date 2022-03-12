@@ -10,17 +10,25 @@ N = int(StringList[0])
 PersonList = StringList[1:N + 1]
 print(PersonList)
 for i in range(N):
-    PersonList[i] = PersonList[i].split(' ', 3)
+    PersonList[i] = PersonList[i].split(' ', 2)
+
 
 print(PersonList)
 print(N)
+poslist=[]
+
+for i in range(N):
+    poslist.append(int(PersonList[i][0]))
+
+print(poslist)
+M=max(poslist)
 
 TimeList=[]
-c = 0
+
 distance = 0
 sumtime = 0
-
-while c < N:
+c=0
+while c < M:
     for j in range(N):
         distance = abs(c - int(PersonList[j][0]))
         diff = distance - int(PersonList[j][2])
