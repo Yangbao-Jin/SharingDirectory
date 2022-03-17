@@ -6,6 +6,6 @@ array = []
 for index, value in enumerate(String):
     value.replace("\n", "")
     if index >= 2:
-        array.append(value.split())
+        array.append(list(map(int, value.split())))
 
 print(array)
