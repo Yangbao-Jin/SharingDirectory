@@ -91,6 +91,11 @@ while True:
             else:
                 node=Route.pop()
 
+node=Route.pop()
+while node:
+    print(node.coordination)
+    node=Route.pop()
+
 
 
 
